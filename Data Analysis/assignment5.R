@@ -22,7 +22,6 @@ energy<-c(55.291, 59.718, 62.688, 63.886, 66.458, 68.548,
 x=t.test(energy,mu=62,alternative = "greater")
 y=power.t.test(n=16,del=65.57412-62,sd=sd(energy),sig.level=.05,
                type="one.sample",alternative="one.sided")
-print(list(x,y))
 
 mood1<-c(3,0,6,7,4,3,2,1,4)
 mood2<-c(5,1,5,7,10,9,7,11,8)
@@ -30,7 +29,6 @@ x=t.test(mood1,mood2,paired=TRUE,alternative="two.sided")
 y=power.t.test(n=9,delta=-3.6667,sd=3.5,sig.level=.05,
                type="one.sample",alternative="two.sided")
 z=power.t.test(d=3.6667/3.5,power=.85, sig.level = .05,type="paired")
-print(list(x,y,z))
 
 sigma0<-17.5
 sigma1<-20.1
@@ -45,14 +43,9 @@ sp=sqrt(((n0-1)*sigma0^2+(n1-1)*sigma1^2)/(n0+n1-2))
 z=(mean0-mean1)/(sp*sqrt(1/n0+1/n1))#zvalue
 ztest=qnorm(p=.05/2,lower.tail=T)#c
 x=2*pnorm(-abs(z))#pvalue
-#difference<-c(mean0-mean1)
-
-cat(z,ztest,x)
 
 S=sqrt((sigma0^2/n0)+(sigma1^2/n1))
 statistic=(mean0-mean1-m0)/S
 xx=2*pnorm(abs(statistic),lower.tail=FALSE)
 LCL=(mean0-mean1-S*qnorm(1-0.05/2))
 UCL=(mean0-mean1+S*qnorm(1-0.05/2))
-
-print(list(xx,LCL,UCL))
